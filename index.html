@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday, Hamfrey! 🎂</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 100%;
+    min-height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #070714;
+    color: white;
+    overflow-x: hidden;
+}
+
+body {
+    min-height: 100vh;
+}
+
+/* ---------- BACKGROUND ---------- */
+
+.background {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 50% 20%, #202052 0%, #0b0b20 40%, #070714 80%);
+}
+
+.star {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: white;
+    border-radius: 50%;
+    opacity: .7;
+    animation: twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle {
+    from { opacity: .2; transform: scale(.7); }
+    to { opacity: 1; transform: scale(1.4); }
+}
+
+/* ---------- OPEN SCREEN ---------- */
+
+#intro {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+    text-align: center;
+    background:
+        radial-gradient(circle at center, #171744, #070714 70%);
+    transition: opacity 1s ease, visibility 1s ease;
+}
+
+.intro-box {
+    width: min(500px, 100%);
+    padding: 35px 25px;
+    border: 1px solid rgba(255,204,0,.35);
+    border-radius: 25px;
+    background: rgba(15,15,35,.8);
+    box-shadow:
+        0 0 50px rgba(255,204,0,.12),
+        inset 0 0 30px rgba(255,255,255,.02);
+    backdrop-filter: blur(12px);
+}
+
+.intro-gift {
+    font-size: 75px;
+    animation: giftFloat 2s ease-in-out infinite;
+}
+
+@keyframes giftFloat {
+    0%,100% { transform: translateY(0) rotate(-3deg); }
+    50% { transform: translateY(-15px) rotate(3deg); }
+}
+
+.intro-box h1 {
+    margin-top: 15px;
+    font-size: clamp(28px, 8vw, 45px);
+    color: #ffcc00;
+}
+
+.intro-box p {
+    margin: 15px 0 25px;
+    color: #bbbbcc;
+    line-height: 1.6;
+}
+
+.open-btn {
+    border: none;
+    border-radius: 50px;
+    padding: 15px 30px;
+    font-size: 17px;
+    font-weight: bold;
+    color: #070714;
+    background: #ffcc00;
+    cursor: pointer;
+    box-shadow: 0 0 25px rgba(255,204,0,.35);
+    transition: .25s;
+}
+
+.open-btn:hover {
+    transform: scale(1.06);
+    box-shadow: 0 0 40px rgba(255,204,0,.65);
+}
+
+#intro.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* ---------- MAIN ---------- */
+
+main {
+    width: min(900px, 100%);
+    margin: auto;
+    padding: 55px 18px;
+    text-align: center;
+}
+
+.badge {
+    display: inline-block;
+    padding: 8px 15px;
+    border: 1px solid rgba(255,204,0,.4);
+    border-radius: 30px;
+    color: #ffcc00;
+    font-size: 13px;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+h1.main-title {
+    font-size: clamp(38px, 11vw, 85px);
+    line-height: 1;
+    margin-bottom: 15px;
+    background: linear-gradient(90deg, #fff, #ffcc00, #fff);
+    -webkit-background-clip: text;
+    color: transparent;
+    background-size: 200%;
+    animation: shine 3s linear infinite;
+}
+
+@keyframes shine {
+    to { background-position: 200%; }
+}
+
+.subtitle {
+    color: #aaaabd;
+    font-size: 17px;
+}
+
+/* ---------- BALLOONS ---------- */
+
+.balloons {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.balloon {
+    position: absolute;
+    bottom: -150px;
+    width: 45px;
+    height: 58px;
+    border-radius: 50%;
+    animation: rise linear infinite;
+    opacity: .8;
+}
+
+.balloon::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 56px;
+    width: 1px;
+    height: 90px;
+    background: rgba(255,255,255,.35);
+}
+
+.balloon:nth-child(1) {
+    left: 5%;
+    background: #ff4d6d;
+    animation-duration: 11s;
+}
+
+.balloon:nth-child(2) {
+    left: 20%;
+    background: #ffcc00;
+    animation-duration: 14s;
+    animation-delay: 2s;
+}
+
+.balloon:nth-child(3) {
+    right: 20%;
+    background: #00cc99;
+    animation-duration: 12s;
+    animation-delay: 4s;
+}
+
+.balloon:nth-child(4) {
+    right: 5%;
+    background: #7c5cff;
+    animation-duration: 15s;
+    animation-delay: 1s;
+}
+
+@keyframes rise {
+    0% {
+        transform: translateY(0) rotate(-5deg);
+    }
+    50% {
+        transform: translateY(-55vh) rotate(6deg);
+    }
+    100% {
+        transform: translateY(-115vh) rotate(-5deg);
+    }
+}
+
+/* ---------- CAKE ---------- */
+
+.cake-area {
+    margin: 45px auto;
+}
+
+.cake {
+    position: relative;
+    width: 190px;
+    height: 130px;
+    margin: auto;
+}
+
+.cake-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 10px;
+    width: 170px;
+    height: 75px;
+    border-radius: 12px 12px 20px 20px;
+    background: linear-gradient(#ffcc88, #c87938);
+    box-shadow: 0 12px 30px rgba(0,0,0,.4);
+}
+
+.cake-middle {
+    position: absolute;
+    bottom: 55px;
+    left: 22px;
+    width: 146px;
+    height: 35px;
+    border-radius: 10px;
+    background: #fff;
+}
+
+.cream {
+    position: absolute;
+    bottom: 75px;
+    left: 10px;
+    width: 170px;
+    height: 25px;
+    border-radius: 50%;
+    background: #fff;
+}
+
+.candle {
+    position: absolute;
+    bottom: 98px;
+    left: 87px;
+    width: 16px;
+    height: 42px;
+    background: repeating-linear-gradient(
+        45deg,
+        #ff4d6d 0 6px,
+        #fff 6px 12px
+    );
+    border-radius: 5px;
+}
+
+.flame {
+    position: absolute;
+    bottom: 137px;
+    left: 86px;
+    width: 18px;
+    height: 27px;
+    background: #ffcc00;
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    box-shadow: 0 0 25px #ffcc00;
+    animation: flame .6s infinite alternate;
+}
+
+@keyframes flame {
+    from { transform: rotate(-45deg) scale(.9); }
+    to { transform: rotate(-45deg) scale(1.12); }
+}
+
+/* ---------- MESSAGE CARD ---------- */
+
+.card {
+    position: relative;
+    z-index: 5;
+    margin: 30px auto;
+    padding: 30px 24px;
+    max-width: 650px;
+    border-radius: 24px;
+    border: 1px solid rgba(255,255,255,.08);
+    background: rgba(15,15,35,.75);
+    box-shadow: 0 20px 60px rgba(0,0,0,.3);
+    backdrop-filter: blur(10px);
+}
+
+.card h2 {
+    color: #ffcc00;
+    margin-bottom: 15px;
+    font-size: 26px;
+}
+
+.card p {
+    color: #d0d0dc;
+    line-height: 1.8;
+    font-size: 16px;
+}
+
+/* ---------- ₱20 CARD ---------- */
+
+.debt-card {
+    margin-top: 25px;
+    padding: 28px 22px;
+    border: 1px dashed rgba(255,204,0,.5);
+    border-radius: 22px;
+    background: rgba(255,204,0,.04);
+}
+
+.money {
+    font-size: 55px;
+    margin-bottom: 10px;
+}
+
+.debt-card h2 {
+    color: #ffcc00;
+}
+
+.debt-card p {
+    color: #bdbdcc;
+    line-height: 1.7;
+}
+
+.promise {
+    margin-top: 15px;
+    color: white !important;
+    font-weight: bold;
+}
+
+/* ---------- FINAL ---------- */
+
+.final {
+    margin-top: 50px;
+    padding: 30px 10px;
+}
+
+.final h2 {
+    font-size: clamp(30px, 8vw, 55px);
+    color: #ffcc00;
+    text-shadow: 0 0 25px rgba(255,204,0,.35);
+}
+
+.final p {
+    margin-top: 15px;
+    color: #aaaabd;
+}
+
+footer {
+    margin-top: 45px;
+    padding-bottom: 30px;
+    color: #666679;
+    font-size: 13px;
+}
+
+/* ---------- CONFETTI ---------- */
+
+.confetti {
+    position: fixed;
+    top: -20px;
+    width: 8px;
+    height: 15px;
+    z-index: 200;
+    pointer-events: none;
+    animation: confettiFall linear forwards;
+}
+
+@keyframes confettiFall {
+    to {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media (max-width: 500px) {
+
+    main {
+        padding-top: 40px;
+    }
+
+    .card {
+        padding: 25px 18px;
+    }
+
+    .cake {
+        transform: scale(.85);
+    }
+
+    .intro-box {
+        padding: 30px 20px;
+    }
+
+    .intro-gift {
+        font-size: 65px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- BACKGROUND -->
+<div class="background" id="background"></div>
+
+<!-- BALLOONS -->
+<div class="balloons">
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+</div>
+
+<!-- INTRO -->
+<section id="intro">
+
+    <div class="intro-box">
+
+        <div class="intro-gift">🎁</div>
+
+        <h1>A Little Surprise...</h1>
+
+        <p>
+            This isn't an ordinary birthday greeting.
+            Someone from your old classmates prepared something special for you.
+        </p>
+
+        <button class="open-btn" onclick="openBirthday()">
+            🎉 Open Your Surprise
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- MAIN -->
+<main>
+
+    <div class="badge">
+        A SPECIAL MESSAGE
+    </div>
+
+    <h1 class="main-title">
+        HAPPY BIRTHDAY!
+    </h1>
+
+    <div class="subtitle">
+        🎂 For <strong>Hamfrey Joma Halto</strong> 🎂
+    </div>
+
+
+    <!-- CAKE -->
+    <div class="cake-area">
+
+        <div class="cake">
+
+            <div class="flame"></div>
+
+            <div class="candle"></div>
+
+            <div class="cream"></div>
+
+            <div class="cake-middle"></div>
+
+            <div class="cake-bottom"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- MESSAGE -->
+    <div class="card">
+
+        <h2>Hey Hamfrey! 👋</h2>
+
+        <p>
+            Happy Birthday! 🎉
+        </p>
+
+        <br>
+
+        <p>
+            Even though we were classmates before,
+            I still remember the kindness you showed me.
+            Sometimes it's the small things people do
+            that we remember the longest.
+        </p>
+
+        <br>
+
+        <p>
+            Thank you for being a kind person and
+            for being a good classmate and friend.
+            I hope this new chapter of your life
+            brings you happiness, success, good health,
+            and many unforgettable moments.
+        </p>
+
+    </div>
+
+
+    <!-- ₱20 MEMORY -->
+    <div class="card debt-card">
+
+        <div class="money">💸</div>
+
+        <h2>
+            And About That ₱20... 😂
+        </h2>
+
+        <p>
+            Bro... I haven't forgotten that ₱20 you
+            let me borrow before. 😭😂
+        </p>
+
+        <br>
+
+        <p>
+            You were kind enough to help me when I needed it,
+            and honestly, I still remember it.
+        </p>
+
+        <p class="promise">
+            Don't worry... your ₱20 is still somewhere
+            in the Prometheus financial department. 🤣
+        </p>
+
+        <br>
+
+        <p>
+            For now, please accept this birthday greeting
+            as the first installment. 😎🎂
+        </p>
+
+    </div>
+
+
+    <!-- FINAL -->
+    <div class="final">
+
+        <h2>
+            🎉 HAPPY BIRTHDAY, HAMFREY! 🎉
+        </h2>
+
+        <p>
+            Keep being a good person.
+            Keep moving forward.
+            And may your future be brighter than ever. ✨
+        </p>
+
+        <br>
+
+        <p>
+            — From your former classmate,
+            <strong>Joefel</strong> ❤️
+        </p>
+
+    </div>
+
+
+    <footer>
+        Made with ❤️, memories, and apparently a ₱20 debt.
+        😂
+    </footer>
+
+</main>
+
+
+<script>
+
+/* ---------- STARS ---------- */
+
+const background = document.getElementById("background");
+
+for (let i = 0; i < 80; i++) {
+
+    const star = document.createElement("div");
+
+    star.className = "star";
+
+    star.style.left = Math.random() * 100 + "%";
+    star.style.top = Math.random() * 100 + "%";
+
+    star.style.animationDelay =
+        Math.random() * 3 + "s";
+
+    background.appendChild(star);
+}
+
+
+/* ---------- OPEN BIRTHDAY ---------- */
+
+function openBirthday() {
+
+    document.getElementById("intro")
+        .classList.add("hidden");
+
+    createConfetti();
+
+    setTimeout(() => {
+        createConfetti();
+    }, 1200);
+
+}
+
+
+/* ---------- CONFETTI ---------- */
+
+function createConfetti() {
+
+    const symbols = [
+        "🎉",
+        "✨",
+        "🎊",
+        "⭐",
+        "💛",
+        "🎈"
+    ];
+
+    for (let i = 0; i < 80; i++) {
+
+        const piece = document.createElement("div");
+
+        piece.className = "confetti";
+
+        piece.textContent =
+            symbols[Math.floor(Math.random() * symbols.length)];
+
+        piece.style.left =
+            Math.random() * 100 + "vw";
+
+        piece.style.fontSize =
+            (10 + Math.random() * 18) + "px";
+
+        piece.style.animationDuration =
+            (2 + Math.random() * 4) + "s";
+
+        piece.style.animationDelay =
+            Math.random() * 1.5 + "s";
+
+        document.body.appendChild(piece);
+
+        setTimeout(() => {
+            piece.remove();
+        }, 6500);
+    }
+}
+
+
+/* ---------- EXTRA CELEBRATION ---------- */
+
+setTimeout(() => {
+
+    /*
+       This keeps the page alive with
+       occasional small celebrations.
+    */
+
+}, 1000);
+
+</script>
+
+</body>
+</html>
